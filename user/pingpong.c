@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
         
         if(read(parent_fd[0], buf_ping, sizeof(buf_ping)) == 4){    //收到4个字节
 
-            printf("Child_pid = %d, 收到ping\n", getpid());
+            printf("%d: received ping\n", getpid());
         }
 
         write(child_fd[1], "pong", 4);  //往管道写
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
         if(read(child_fd[0], buf_pong, sizeof(buf_pong)) == 4){
 
-            printf("Parent_pid = %d, 收到pong\n", getpid());
+            printf("%d: received pong\n", getpid());
         }
 
         close(parent_fd[1]);
